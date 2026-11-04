@@ -7,6 +7,21 @@ from pathlib import Path, PurePosixPath
 import zipfile
 
 HERE = Path(__file__).resolve().parent
+PUBLIC_ENV_PATHS = {'starter/.env', 'advanced/display/.env'}
+PUBLIC_ENV_DEFAULTS = b"""# Public workshop defaults. Edit this file for your own networks; never commit personal values.
+# Use 2.4 GHz Wi-Fi; captive portals/enterprise login are unsupported.
+# Values are literal: $, # and backslashes are kept as typed.
+HOME_WIFI_SSID=""
+HOME_WIFI_PASSWORD=""
+
+# Office guest default. Leave password blank only for an approved open network.
+OFFICE_WIFI_SSID="Guest-AccessNG"
+OFFICE_WIFI_PASSWORD=""
+
+# Live build uses Wi-Fi when 1. Offline starter always forces Wi-Fi off.
+WORKSHOP_LIVE=1
+"""
+
 RUNTIME = {'.git', '.pio', '.generated', '.local', '.venv', '.venv-companion', 'build', 'dist', '__pycache__'}
 GENERATED_EDITOR = {'.vscode/c_cpp_properties.json', '.vscode/launch.json'}
 
@@ -21,7 +36,9 @@ def read_manifest(path):
             raise ValueError('Unsafe manifest path')
         if any(part in RUNTIME for part in p.parts) or name.endswith(tuple(GENERATED_EDITOR)):
             raise ValueError('Generated/private manifest entry')
-        if p.name in ('.env', 'secrets.h') or p.name.endswith(('-token.json', '-credentials.json')):
+        if (p.name == '.env' or p.name.startswith('.env.')) and name not in PUBLIC_ENV_PATHS:
+            raise ValueError('Private manifest entry')
+        if p.name == 'secrets.h' or p.name.endswith(('-token.json', '-credentials.json')):
             raise ValueError('Private manifest entry')
     return names
 
@@ -56,6 +73,9 @@ def package(source, output, release, manifest=HERE/'repository-files.txt'):
     if actual != set(names):
         raise ValueError('Source/manifest mismatch: missing='+repr(sorted(set(names)-actual))+
                          '; unexpected='+repr(sorted(actual-set(names))))
+    for name in PUBLIC_ENV_PATHS & set(names):
+        if (source/name).read_bytes() != PUBLIC_ENV_DEFAULTS:
+            raise ValueError(f'{name} differs from public defaults; do not package personal Wi-Fi settings')
     output.mkdir(parents=True, exist_ok=True)
     archive = output/'CrowPanel-Workshop-Source.zip'
     records = []

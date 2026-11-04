@@ -131,7 +131,9 @@ c++ -std=c++11 -Ifirmware/include tests/live_poll_test.cpp -o /tmp/crowpanel-liv
 ```
 
 In a PlatformIO IDE terminal, `pio run -e workshop_demo` builds offline.
-After creating `.env`, `pio run -e workshop` builds the direct live branch.
+The supplied `.env` uses `Guest-AccessNG` with a blank password; no copy step is
+needed. `pio run -e workshop` builds the direct live branch. Edit `.env` for another
+network, keeping personal edits out of commits and release ZIPs.
 Supply your own board port with `--target upload --upload-port YOUR_PORT`.
 Physical display/buttons, live board data, Windows and on-site networking remain
 manual checks. Keep private headers, ZIP caches, `.pio` and credential-bearing

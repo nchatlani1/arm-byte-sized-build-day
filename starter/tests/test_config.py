@@ -25,6 +25,24 @@ class ConfigTests(unittest.TestCase):
         return (self.root/'firmware/include/secrets.h').read_text()
     def macro(self, name):
         return json.loads(re.search(r'^#define '+name+r' (.+)$',self.config(),re.M)[1])
+    def test_supplied_guest_defaults_work_without_copying_or_editing(self):
+        self.save_env((ROOT/'.env').read_text())
+        output=io.StringIO()
+        with contextlib.redirect_stdout(output):self.assertTrue(export_config(self.root))
+        self.assertEqual(self.macro('HOME_WIFI_SSID'),'')
+        self.assertEqual(self.macro('HOME_WIFI_PASSWORD'),'')
+        self.assertEqual(self.macro('OFFICE_WIFI_SSID'),'Guest-AccessNG')
+        self.assertEqual(self.macro('OFFICE_WIFI_PASSWORD'),'')
+        self.assertEqual(self.macro('WORKSHOP_LIVE'),1)
+        self.assertEqual(output.getvalue(),'')
+
+    def test_missing_env_fails_without_reusing_or_overwriting_old_credentials(self):
+        self.save_env('HOME_WIFI_SSID="Home"\n');export_config(self.root)
+        before=self.config();(self.root/'.env').unlink()
+        with self.assertRaisesRegex(ValueError,r'Missing \.env; restore the supplied'):
+            export_config(self.root)
+        self.assertEqual(self.config(),before)
+
     def test_env_only_requires_no_setup_json_and_keeps_password_literal(self):
         password=r'p a$$#word\with"quotes'
         self.save_env('HOME_WIFI_SSID="My home"\nHOME_WIFI_PASSWORD="'+password+'"\n')

@@ -4,7 +4,7 @@
 
 Mac and Windows applications belong in the **CrowPanel-Workshop GitHub Releases**
 assets. The repository README and the presentation link to these versioned
-assets in this repository. [Source ZIP](https://github.com/nchatlani1/arm-byte-sized-build-day/releases/download/workshop-v0.1.0/CrowPanel-Workshop-Source.zip) · [Mac Apple Silicon 0.3.2 pilot](https://github.com/nchatlani1/arm-byte-sized-build-day/releases/download/workshop-v0.1.0/CrowPanel-Companion-macOS-arm64-0.3.2.zip) · [Windows x64 0.3.2 pilot](https://github.com/nchatlani1/arm-byte-sized-build-day/releases/download/workshop-v0.1.0/CrowPanel-Companion-Windows-x64-0.3.2.zip) · [Release notes](https://github.com/nchatlani1/arm-byte-sized-build-day/releases/tag/workshop-v0.1.0).
+assets in this repository. [Source ZIP](https://github.com/nchatlani1/arm-byte-sized-build-day/releases/download/workshop-v0.1.1/CrowPanel-Workshop-Source.zip) · [Mac Apple Silicon 0.3.2 pilot](https://github.com/nchatlani1/arm-byte-sized-build-day/releases/download/workshop-v0.1.0/CrowPanel-Companion-macOS-arm64-0.3.2.zip) · [Windows x64 0.3.2 pilot](https://github.com/nchatlani1/arm-byte-sized-build-day/releases/download/workshop-v0.1.0/CrowPanel-Companion-Windows-x64-0.3.2.zip) · [Source release notes and checksums](https://github.com/nchatlani1/arm-byte-sized-build-day/releases/tag/workshop-v0.1.1) · [Companion release notes and checksums](https://github.com/nchatlani1/arm-byte-sized-build-day/releases/tag/workshop-v0.1.0).
 
 | Platform | Current status |
 | --- | --- |
@@ -27,6 +27,11 @@ the flags to enable only one source:
   "spotify": true
 }
 ```
+
+The supplied `.env` in this project already uses `Guest-AccessNG` with a blank
+password. No copy step is needed for that guest network. Edit `.env` directly for
+another network; personal edits appear in Git and must stay out of commits and
+shared ZIPs.
 
 The starter folder has no receiver; upload advanced/display firmware first. Enable
 just one flag if preferred. Calendar adds a meeting screen and Morning Briefing

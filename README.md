@@ -2,7 +2,8 @@
 
 After Casey’s browser starter, open **[starter/](starter/)** for Morning Briefing.
 The default screen shows **ARM stock and weather for ZIP 92128**. Start by editing
-your ticker and ZIP, then add home/office Wi-Fi for live data.
+your ticker and ZIP. The supplied `.env` already selects the office guest Wi-Fi
+for live data; no file-copy step is needed.
 
 | Folder | What it contains |
 | --- | --- |
@@ -15,10 +16,19 @@ Open `CrowPanel-Workshop.code-workspace` to see only the starter in VS Code.
 Alternatively use **File → Open Folder → starter**. Do not create a new PlatformIO
 project or open both display projects as one PlatformIO project.
 
+## Install PlatformIO
+
+Open the [PlatformIO IDE extension](https://marketplace.visualstudio.com/items?itemName=platformio.platformio-ide), click **Install**,
+allow it to open VS Code, and finish installing there. Wait for its toolchain setup
+to complete before building. PlatformIO Core is included.
+
+The shipped `.env` files contain public guest-network defaults. Personal Wi-Fi edits
+appear in Git: keep those edits out of commits, shared firmware and release ZIPs.
+
 ## Starter entry points
 
 - **[`starter/device.json`](starter/device.json)** — ticker, US ZIP, units, title and footer.
-- **[`starter/.env.example`](starter/.env.example)** — copy to `.env` for private home/office Wi-Fi.
+- **[`starter/.env`](starter/.env)** — ready-to-use `Guest-AccessNG` settings; edit here for another network.
 - **[`starter/firmware/src/main.cpp`](starter/firmware/src/main.cpp)** — commented Morning Briefing application, with Arduino `setup()` and `loop()`.
 
 [Starter instructions](starter/README.md) · [Advanced projects](advanced/README.md) ·
@@ -27,7 +37,7 @@ project or open both display projects as one PlatformIO project.
 This is one repository. Versioned companion binaries belong in this repository’s
 GitHub Releases and are linked from the companion-apps folder.
 Mac Apple Silicon and Windows x64 apps are pilots; physical device and account
-acceptance remains pending. [Source ZIP](https://github.com/nchatlani1/arm-byte-sized-build-day/releases/download/workshop-v0.1.0/CrowPanel-Workshop-Source.zip) · [Mac Apple Silicon 0.3.2 pilot](https://github.com/nchatlani1/arm-byte-sized-build-day/releases/download/workshop-v0.1.0/CrowPanel-Companion-macOS-arm64-0.3.2.zip) · [Windows x64 0.3.2 pilot](https://github.com/nchatlani1/arm-byte-sized-build-day/releases/download/workshop-v0.1.0/CrowPanel-Companion-Windows-x64-0.3.2.zip) · [Release notes](https://github.com/nchatlani1/arm-byte-sized-build-day/releases/tag/workshop-v0.1.0).
+acceptance remains pending. [Source ZIP](https://github.com/nchatlani1/arm-byte-sized-build-day/releases/download/workshop-v0.1.1/CrowPanel-Workshop-Source.zip) · [Mac Apple Silicon 0.3.2 pilot](https://github.com/nchatlani1/arm-byte-sized-build-day/releases/download/workshop-v0.1.0/CrowPanel-Companion-macOS-arm64-0.3.2.zip) · [Windows x64 0.3.2 pilot](https://github.com/nchatlani1/arm-byte-sized-build-day/releases/download/workshop-v0.1.0/CrowPanel-Companion-Windows-x64-0.3.2.zip) · [Source release notes and checksums](https://github.com/nchatlani1/arm-byte-sized-build-day/releases/tag/workshop-v0.1.1) · [Companion release notes and checksums](https://github.com/nchatlani1/arm-byte-sized-build-day/releases/tag/workshop-v0.1.0).
 
 ## Slides and downloads
 

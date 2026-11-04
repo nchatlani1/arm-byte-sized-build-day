@@ -7,8 +7,10 @@ that integration and its screen. With both false, Bluetooth is excluded entirely
 
 1. Open this folder or `CrowPanel-Advanced.code-workspace` in VS Code.
 2. Copy your chosen ticker/ZIP/title/footer values into this `device.json`, keeping
-   its `extensions` settings. Copy `.env.example` to a private `.env` here if live
-   stock/weather is wanted. Settings in the starter folder do not affect this build.
+   its `extensions` settings. The supplied `.env` already uses `Guest-AccessNG`
+   with a blank password for live stock/weather. Edit it directly for another
+   approved 2.4 GHz network. Settings in starter do not affect this build.
+   Personal `.env` edits appear in Git; keep them out of commits and shared ZIPs.
 3. Pause any companion connection and close serial monitors. Use the same Build /
    Upload offline starter or live stock/weather tasks. These are alternate builds
    of this advanced project. Offline disables Wi-Fi; account USB/Bluetooth remains.

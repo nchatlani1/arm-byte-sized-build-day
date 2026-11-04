@@ -39,7 +39,7 @@ A nearby awake laptop remains necessary for account updates.
 From this folder, package the entire unified repository using:
 
 ```sh
-python3 release/package_workshop.py --source ../.. --output /external/artifacts --release workshop-v0.1.0
+python3 release/package_workshop.py --source ../.. --output /external/artifacts --release workshop-v0.1.1
 ```
 
 `release/repository-files.txt` explicitly lists source from the unified root.

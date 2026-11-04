@@ -6,7 +6,7 @@ import unittest
 import zipfile
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'release'))
-from package_workshop import package,read_manifest
+from package_workshop import package,read_manifest,PUBLIC_ENV_PATHS,PUBLIC_ENV_DEFAULTS
 
 class PackageTests(unittest.TestCase):
     def setUp(self):
@@ -29,6 +29,37 @@ class PackageTests(unittest.TestCase):
             for name in read_manifest(self.manifest):
                 self.assertEqual(z.read('CrowPanel-Workshop/'+name),(self.source/name).read_bytes())
         before=archive.read_bytes();self.assertEqual(before,self.build().read_bytes())
+    def add_public_env_defaults(self):
+        names=read_manifest(self.manifest)
+        for name in PUBLIC_ENV_PATHS:
+            p=self.source/name;p.parent.mkdir(parents=True,exist_ok=True)
+            p.write_bytes(PUBLIC_ENV_DEFAULTS)
+        self.manifest.write_text('\n'.join(sorted(names+list(PUBLIC_ENV_PATHS)))+'\n')
+
+    def test_only_approved_public_env_files_are_packaged_byte_for_byte(self):
+        self.add_public_env_defaults()
+        with zipfile.ZipFile(self.build()) as z:
+            for name in PUBLIC_ENV_PATHS:
+                self.assertEqual(z.read('CrowPanel-Workshop/'+name),PUBLIC_ENV_DEFAULTS)
+        for name in PUBLIC_ENV_PATHS:
+            self.assertEqual((ROOT.parents[1]/name).read_bytes(),PUBLIC_ENV_DEFAULTS)
+
+    def test_personal_or_malformed_env_edits_are_rejected_without_echoing_values(self):
+        self.add_public_env_defaults()
+        for name in PUBLIC_ENV_PATHS:
+            p=self.source/name
+            for data in (PUBLIC_ENV_DEFAULTS.replace(b'Guest-AccessNG',b'private-network'),
+                         PUBLIC_ENV_DEFAULTS.replace(b'OFFICE_WIFI_PASSWORD=""',b'OFFICE_WIFI_PASSWORD="secret-value"'),
+                         PUBLIC_ENV_DEFAULTS+b'UNKNOWN=secret-value\n',
+                         b'malformed secret-value\n'):
+                with self.subTest(name=name):
+                    p.write_bytes(data)
+                    with self.assertRaisesRegex(ValueError,'differs from public defaults') as error:
+                        self.build()
+                    self.assertNotIn('secret-value',str(error.exception))
+                    self.assertFalse((self.root/'out').exists())
+                p.write_bytes(PUBLIC_ENV_DEFAULTS)
+
     def test_missing_required_source_fails(self):
         (self.source/'firmware/src/main.cpp').unlink()
         with self.assertRaises(ValueError):self.build()
@@ -39,7 +70,7 @@ class PackageTests(unittest.TestCase):
                 with self.assertRaises(ValueError):self.build()
                 p.unlink()
     def test_traversal_duplicates_and_secret_manifest_entries_fail(self):
-        for text in ('../outside\n','README.md\nREADME.md\n','.env\n','firmware/include/secrets.h\n','/absolute\n'):
+        for text in ('../outside\n','README.md\nREADME.md\n','.env\n','other/.env\n','starter/.env.local\n','firmware/include/secrets.h\n','/absolute\n'):
             self.manifest.write_text(text)
             with self.assertRaises(ValueError):read_manifest(self.manifest)
     def test_symlinked_source_and_ancestor_fail(self):

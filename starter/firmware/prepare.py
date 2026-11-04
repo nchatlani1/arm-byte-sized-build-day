@@ -2,12 +2,14 @@ Import('env')
 import runpy
 from pathlib import Path
 root = Path(env['PROJECT_DIR'])
-if env['PIOENV'] != 'workshop_demo' and (root / '.env').exists():
+if env['PIOENV'] != 'workshop_demo':
     exporter = runpy.run_path(str(root / 'tools/export_config.py'))
     try:
         live = exporter['export_config'](root)
-    except (ValueError, OSError):
-        raise RuntimeError('Local Wi-Fi configuration is invalid; check .env. Values are not printed.') from None
+    except ValueError as error:
+        raise RuntimeError(f'Wi-Fi configuration failed: {error}. Values are not printed.') from None
+    except OSError:
+        raise RuntimeError('Cannot read .env or write the local Wi-Fi header; check permissions. Values are not printed.') from None
     print('Applied local .env configuration (credentials hidden); live mode: ' + ('on' if live else 'off'))
 # Morning Briefing uses direct Wi-Fi only. Do not compile the Bluetooth library.
 env.GetProjectConfig().set('env:' + env['PIOENV'], 'lib_ignore',

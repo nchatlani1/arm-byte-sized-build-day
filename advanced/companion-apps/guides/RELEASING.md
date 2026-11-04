@@ -8,7 +8,7 @@ The explicit repository source manifest is release/repository-files.txt relative
 this companion-apps folder. From the repository root, package with:
 
 ```sh
-python3 advanced/companion-apps/release/package_workshop.py --source . --output /external/release --release workshop-v0.1.0
+python3 advanced/companion-apps/release/package_workshop.py --source . --output /external/release --release workshop-v0.1.1
 ```
 
 Build apps from advanced/companion-apps with tools/build_companion.py. Mac Apple
@@ -19,10 +19,15 @@ Release. The 0.3.2 Windows x64 CI build and packaged smoke checks passed; its
 unsigned pilot is available, with physical platform acceptance still pending.
 Publish only actual target builds and label their acceptance limits.
 
-Attach the unified source ZIP and actual versioned Mac/Windows packages to one
-GitHub Release. Link the app assets from this folder's README, root README and
-presentation guide. Never invent URLs or relabel a Mac/source ZIP as Windows.
+The workshop-v0.1.1 prerelease is a source-only setup update. Publish its source
+ZIP, participant-release.json file manifest, and SHA256SUMS; keep the existing
+0.3.2 Mac/Windows app links on workshop-v0.1.0. Publish source assets before making
+new download links live. Never invent URLs or relabel a Mac/source ZIP as Windows.
 Keep generated builds, credentials and account state out of source archives.
+
+Only starter/.env and advanced/display/.env may be included, and only when they
+exactly match the public guest-network defaults. Packaging rejects personal edits.
+Build source archives from a clean export of the reviewed commit.
 
 ## Slides
 

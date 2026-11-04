@@ -1,6 +1,6 @@
 // MORNING BRIEFING STARTER — one stock/weather screen, no companion or Bluetooth.
 // 1. Change stock_symbol and weather.zip_code in device.json.
-// 2. Copy .env.example to .env for your private home/office Wi-Fi settings.
+// 2. The supplied .env uses Guest-AccessNG; edit it for another network, keeping personal values out of Git.
 // 3. Build/upload: offline shows DEMO; live fetches directly from the board.
 #include <Arduino.h>
 #include <cstring>

@@ -1,7 +1,9 @@
 # Morning Briefing code guide
 
 The first customization is `device.json`: your ticker and ZIP. Wi-Fi lives in
-private `.env`, copied from `.env.example`. Both files are in the starter folder.
+the supplied `.env`, prefilled for `Guest-AccessNG` with a blank password. No
+copy step is needed. Edit it directly for another network; personal edits appear
+in Git and must stay out of commits and shared ZIPs.
 
 ## Firmware flow
 
@@ -23,7 +25,7 @@ before the first success. There is one screen and no wheel navigation.
 | `tools/render.py` | Single Morning Briefing sample/layout preview |
 | `tools/pack_frames.py` | Generated frame and public ticker/location values |
 | `tools/device_config.py` | Public JSON checks and build-time ZIP lookup/cache |
-| `tools/export_config.py` | Private `.env` to ignored secrets.h; no account settings |
+| `tools/export_config.py` | Project `.env` to ignored secrets.h; no account settings |
 | `firmware/lib/ElecrowEPD/` | Retained panel driver/font and provenance |
 
 Stock/weather poll every 15 minutes. Automatic physical redraws are at least

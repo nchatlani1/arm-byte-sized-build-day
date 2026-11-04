@@ -35,7 +35,7 @@ def read_wifi_env(path):
 def export_config(root=ROOT, live=None):
     root = Path(root)
     if not (root / '.env').exists():
-        raise ValueError('Copy .env.example to .env and enter Wi-Fi settings')
+        raise ValueError('Missing .env; restore the supplied .env from the repository or source ZIP')
     values = read_wifi_env(root / '.env')
     if live is None:
         live = values.get('WORKSHOP_LIVE', '1') == '1'
@@ -59,6 +59,8 @@ if __name__ == '__main__':
     args = parser.parse_args()
     try:
         live = export_config(live=args.live)
-    except (ValueError, OSError):
-        raise SystemExit('Configuration export failed. Check .env; values are not printed.') from None
+    except ValueError as error:
+        raise SystemExit(f'Configuration export failed: {error}. Values are not printed.') from None
+    except OSError:
+        raise SystemExit('Configuration export failed. Check .env and header permissions; values are not printed.') from None
     print('Exported private Wi-Fi header. Live mode: ' + ('on' if live else 'off'))

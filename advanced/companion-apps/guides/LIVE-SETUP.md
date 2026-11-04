@@ -1,4 +1,4 @@
-> Starter Wi-Fi is configured in `starter/.env`. Account firmware and its independent Wi-Fi settings live in `advanced/display/`.
+> Both `starter/.env` and `advanced/display/.env` are supplied with `Guest-AccessNG` and a blank password. Edit each project’s file directly for another network; personal edits appear in Git and must stay out of commits and shared ZIPs.
 
 # Live data
 

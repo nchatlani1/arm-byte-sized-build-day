@@ -43,7 +43,7 @@ advanced/companion-apps/tests/test_packages.py
 advanced/companion-apps/tools/build_companion.py
 advanced/companion-apps/tools/mac_calendar_reader.swift
 advanced/companion-apps/tools/smoke_windows_companion.py
-advanced/display/.env.example
+advanced/display/.env
 advanced/display/.gitignore
 advanced/display/.vscode/extensions.json
 advanced/display/.vscode/tasks.json
@@ -95,7 +95,7 @@ docs/.nojekyll
 docs/index.html
 docs/slides/CROWPANEL-COMPANION-SETUP.html
 docs/slides/CROWPANEL-INTRO.html
-starter/.env.example
+starter/.env
 starter/.gitignore
 starter/.vscode/extensions.json
 starter/.vscode/tasks.json

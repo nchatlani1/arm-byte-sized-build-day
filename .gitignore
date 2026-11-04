@@ -9,7 +9,8 @@
 .DS_Store
 **/.env
 **/.env.*
-!**/.env.example
+!starter/.env
+!advanced/display/.env
 **/firmware/include/secrets.h
 **/.vscode/c_cpp_properties.json
 **/.vscode/launch.json

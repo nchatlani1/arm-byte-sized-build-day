@@ -1,6 +1,6 @@
 // ADVANCED DISPLAY: Morning Briefing plus optional calendar and Spotify.
 // For the single-project introduction, use ../../starter instead.
-// device.json controls screens; private .env controls this project's Wi-Fi.
+// device.json controls screens; the supplied .env uses Guest-AccessNG. Keep personal Wi-Fi edits out of Git.
 #include <Arduino.h>
 #include <cstring>
 #include <Preferences.h>
