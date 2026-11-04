@@ -54,18 +54,18 @@ class Tests(unittest.TestCase):
         self.assertIn('/me/player/currently-playing',calls[-1])
     def test_delivery_contains_data_not_pixels_or_preferences(self):
         pref=dict(DEFAULT,calendar_enabled=True,spotify_enabled=True)
-        values={'calendar':{'status':'ok','title':'CS601 – Seminar','start':2000},'spotify':{'item':{'name':'Track','artists':[{'name':'Artist'}]},'is_playing':True}}
+        values={'calendar':{'status':'ok','title':'CS601 – Seminar','start':1700000100},'spotify':{'item':{'name':'Track','artists':[{'name':'Artist'}]},'is_playing':True}}
         sources={k:{'status':'live'} for k in ('calendar','spotify')}
-        packets=messages(pref,values,sources,now=1900)
+        packets=messages(pref,values,sources,now=1700000000)
         self.assertEqual(packets[0]['title'],'CS601 - Seminar');self.assertEqual(packets[0]['lease'],100)
         self.assertEqual(packets[1]['track'],'Track')
         for packet in packets:
             self.assertLessEqual(len(json.dumps(dict(packet,id=123)).encode())+1,383)
             self.assertTrue(set(packet).isdisjoint({'pixels','frame','project','quotes','stock_symbol','location'}))
-        expired=messages(pref,values,sources,now=2001)
+        expired=messages(pref,values,sources,now=1700000101)
         self.assertEqual(expired[0]['status'],'unavailable')
         sources['spotify']['status']='error'
-        self.assertEqual(messages(pref,values,sources,1900)[1]['status'],'unavailable')
+        self.assertEqual(messages(pref,values,sources,1700000000)[1]['status'],'unavailable')
     def test_ascii_bounds_keep_unicode_data_packet_under_wire_limit(self):
         self.assertEqual(display_text('CS601 – Café',120),'CS601 - Cafe')
         pref=dict(DEFAULT,spotify_enabled=True)
@@ -75,9 +75,9 @@ class Tests(unittest.TestCase):
     def test_controls_and_json_escaping_stay_within_device_command_limit(self):
         self.assertEqual(display_text('A\0B\x7fC\nD',120),'A B C D')
         pref=dict(DEFAULT,spotify_enabled=True,calendar_enabled=True)
-        values={'calendar':{'status':'ok','title':'"'*120,'start':2000},'spotify':{'item':{'name':'"'*120,'artists':[{'name':'"'*64}]},'is_playing':True}}
+        values={'calendar':{'status':'ok','title':'"'*120,'start':1700000100},'spotify':{'item':{'name':'"'*120,'artists':[{'name':'"'*64}]},'is_playing':True}}
         sources={key:{'status':'live'} for key in ('calendar','spotify')}
-        for packet in messages(pref,values,sources,now=1900):
+        for packet in messages(pref,values,sources,now=1700000000):
             wire=json.dumps(dict(packet,id=2147483647),separators=(',',':')).encode()+b'\n'
             self.assertLessEqual(len(wire),383)
     def test_local_api_auth_and_removed_personalization_endpoints(self):

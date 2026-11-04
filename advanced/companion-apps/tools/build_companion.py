@@ -13,6 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / 'dist/companion'
 WORK = ROOT / 'build/companion'
 NOTICE_FALLBACKS = {
+    ('proxy-tools', '0.1.0'): 'proxy_tools-0.1.0-LICENSE.txt',
     ('pyserial', '3.5'): 'pyserial-3.5-LICENSE.txt',
     ('pyobjc-core', '11.1'): 'pyobjc-core-11.1-License.txt',
     ('pyobjc-framework-libdispatch', '11.1'): 'pyobjc-libdispatch-11.1-License.txt',

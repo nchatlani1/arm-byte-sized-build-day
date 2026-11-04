@@ -8,7 +8,7 @@ from build_companion import notice_fallback
 
 class NoticeTests(unittest.TestCase):
     def test_exact_upstream_versions_have_original_notice_texts(self):
-        for name, version in [("pyserial", "3.5"), ("pyobjc-core", "11.1"), ("pyobjc-framework-libdispatch", "11.1")]:
+        for name, version in [("proxy_tools", "0.1.0"), ("pyserial", "3.5"), ("pyobjc-core", "11.1"), ("pyobjc-framework-libdispatch", "11.1")]:
             notice = notice_fallback(name, version)
             self.assertIsNotNone(notice)
             self.assertIn("Copyright", notice.read_text())

@@ -162,7 +162,9 @@ def run(url, core, background, instance):
             atom = win32gui.RegisterClass(wc)
             tray['hwnd'] = win32gui.CreateWindow(atom,CLASS_NAME,0,0,0,0,0,0,0,wc.hInstance,None)
             resources = Path(getattr(sys,'_MEIPASS',Path(__file__).resolve().parents[1]))
-            icon = win32gui.LoadImage(0,str(resources/'companion/ui/tray.ico'),win32con.IMAGE_ICON,32,32,win32con.LR_LOADFROMFILE)
+            # Load the matching small-icon frame rather than shrinking the 32px artwork.
+            size = max(16, win32api.GetSystemMetrics(win32con.SM_CXSMICON))
+            icon = win32gui.LoadImage(0,str(resources/'companion/ui/tray.ico'),win32con.IMAGE_ICON,size,size,win32con.LR_LOADFROMFILE)
             add_icon(tray['hwnd'])
             ready.set()
             win32gui.PumpMessages()

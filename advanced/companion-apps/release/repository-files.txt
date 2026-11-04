@@ -29,6 +29,7 @@ advanced/companion-apps/guides/LICENSES.md
 advanced/companion-apps/guides/LIVE-SETUP.md
 advanced/companion-apps/guides/RELEASING.md
 advanced/companion-apps/licenses/README.md
+advanced/companion-apps/licenses/proxy_tools-0.1.0-LICENSE.txt
 advanced/companion-apps/licenses/pyobjc-core-11.1-License.txt
 advanced/companion-apps/licenses/pyobjc-libdispatch-11.1-License.txt
 advanced/companion-apps/licenses/pyserial-3.5-LICENSE.txt
