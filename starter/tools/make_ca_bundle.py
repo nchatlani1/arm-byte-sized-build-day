@@ -1,4 +1,4 @@
-"""Pack certifi's trusted public roots in the ESP32 Arduino 2.x bundle format.
+"""Pack certifi's trusted public roots in the ESP-IDF certificate bundle format.
 No network access or private certificates are used. The bundle is a build output.
 """
 import base64

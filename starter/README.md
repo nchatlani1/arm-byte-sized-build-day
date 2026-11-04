@@ -1,6 +1,6 @@
 # Starter: Morning Briefing
 
-One screen: **ARM stock + San Diego weather, ZIP 92128**. This folder contains
+One screen: **Google (GOOG) stock + San Diego weather, ZIP 92128**. This folder contains
 only that application. The board fetches live stock/weather directly over Wi-Fi.
 
 ## Edit these first
@@ -20,7 +20,10 @@ There is no calendar receiver, Spotify screen, Bluetooth code or carousel here.
 1. Open this folder or `CrowPanel-Starter.code-workspace` in VS Code. Open the
    [PlatformIO IDE extension](https://marketplace.visualstudio.com/items?itemName=platformio.platformio-ide), click **Install**,
    allow it to open VS Code, and finish installing there. Wait for toolchain setup
-   to complete before building; PlatformIO Core is included.
+   to complete before building; stable PlatformIO Core **6.2.0 or newer** is required.
+   The starter pins Arduino 3.3.12 / ESP-IDF 5.5.5;
+   the older ESP-IDF 4.4.7 stack timed out while joining Guest-AccessNG on a
+   registered workshop board, while the newer stack connected successfully.
 2. Save Casey’s browser work and disconnect its USB access. C++ upload replaces
    the MicroPython firmware. Use a USB data cable and the supported DIE01021S /
    JD79661 board. Find its port under **PlatformIO → Devices**.
