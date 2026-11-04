@@ -1,7 +1,7 @@
 # Arm Byte Sized Build Day — CrowPanel Workshop
 
 After Casey’s browser starter, open **[starter/](starter/)** for Morning Briefing.
-The configured screen shows **Google (GOOG) stock and weather for ZIP 92128**.
+The default screen shows **ARM stock and weather for ZIP 92128**.
 Start by editing your ticker and ZIP. The supplied `.env` already selects the
 office guest Wi-Fi for live data; no file-copy step is needed.
 

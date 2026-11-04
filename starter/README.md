@@ -1,6 +1,6 @@
 # Starter: Morning Briefing
 
-One screen: **Google (GOOG) stock + San Diego weather, ZIP 92128**. This folder contains
+One screen: **ARM stock + San Diego weather, ZIP 92128**. This folder contains
 only that application. The board fetches live stock/weather directly over Wi-Fi.
 
 ## Edit these first
