@@ -24,8 +24,9 @@ remain separate acceptance. Do not enable startup merely to test a build.
 
 Use `Build Companion Windows.cmd` on a Windows x64 target. The root repository's
 manual **Windows companion pilot** GitHub Actions workflow also builds from this
-folder after the repository exists. It uploads an Actions pilot artifact without
-publishing a Release. Windows is not built or validated yet. A real pilot must
+folder. It uploads an Actions pilot artifact without publishing a Release.
+The [0.3.2 Windows x64 CI build and packaged smoke checks passed](https://github.com/nchatlani1/arm-byte-sized-build-day/actions/runs/41778484952).
+The downloadable pilot is unsigned. A physical pilot must
 check WebView2, tray/clean Quit, USB/Bluetooth, classic Outlook, Spotify, sign-in
 startup, sleep/wake and disconnected energy. No substitute Windows ZIP is offered.
 

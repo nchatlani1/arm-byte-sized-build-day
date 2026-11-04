@@ -4,12 +4,12 @@
 
 Mac and Windows applications belong in the **CrowPanel-Workshop GitHub Releases**
 assets. The repository README and the presentation link to these versioned
-assets once the real repository and release URLs exist. [Source ZIP](https://github.com/nchatlani1/arm-byte-sized-build-day/releases/download/workshop-v0.1.0/CrowPanel-Workshop-Source.zip) · [Mac Apple Silicon 0.3.2 pilot](https://github.com/nchatlani1/arm-byte-sized-build-day/releases/download/workshop-v0.1.0/CrowPanel-Companion-macOS-arm64-0.3.2.zip) · [Release notes](https://github.com/nchatlani1/arm-byte-sized-build-day/releases/tag/workshop-v0.1.0).
+assets in this repository. [Source ZIP](https://github.com/nchatlani1/arm-byte-sized-build-day/releases/download/workshop-v0.1.0/CrowPanel-Workshop-Source.zip) · [Mac Apple Silicon 0.3.2 pilot](https://github.com/nchatlani1/arm-byte-sized-build-day/releases/download/workshop-v0.1.0/CrowPanel-Companion-macOS-arm64-0.3.2.zip) · [Windows x64 0.3.2 pilot](https://github.com/nchatlani1/arm-byte-sized-build-day/releases/download/workshop-v0.1.0/CrowPanel-Companion-Windows-x64-0.3.2.zip) · [Release notes](https://github.com/nchatlani1/arm-byte-sized-build-day/releases/tag/workshop-v0.1.0).
 
 | Platform | Current status |
 | --- | --- |
-| Mac Apple Silicon, macOS 14+ | Local 0.3.2 pilot; ad-hoc signed, not notarized; physical pairing/account/startup/energy pilot pending |
-| Windows x64 | Download pending: target build and Windows validation required |
+| Mac Apple Silicon, macOS 14+ | 0.3.2 pilot; ad-hoc signed, not notarized; physical pairing/account/startup/energy pilot pending |
+| Windows x64 | [0.3.2 pilot](https://github.com/nchatlani1/arm-byte-sized-build-day/releases/download/workshop-v0.1.0/CrowPanel-Companion-Windows-x64-0.3.2.zip); unsigned; [Windows CI build and smoke passed](https://github.com/nchatlani1/arm-byte-sized-build-day/actions/runs/41778484952); physical acceptance pending |
 | Intel Mac | Download pending: compatible target build required |
 
 Participants use a packaged app; no participant Python installation is needed.
@@ -37,7 +37,7 @@ The wheel selects enabled screens. Changing configuration requires another uploa
 ## 2. Open the app and connect
 
 Mac: move CrowPanel Companion.app to Applications before enabling startup.
-Windows, after its package is available: extract the whole portable folder to
+Windows: extract the whole portable folder to
 `%LOCALAPPDATA%\Programs\CrowPanel Companion` and keep its resources together.
 Windows requires WebView2; local calendar access requires classic Outlook.
 

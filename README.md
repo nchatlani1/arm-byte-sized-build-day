@@ -25,9 +25,9 @@ project or open both display projects as one PlatformIO project.
 [Companion downloads and setup](advanced/companion-apps/guides/COMPANION-SETUP.md#downloads)
 
 This is one repository. Versioned companion binaries belong in this repository’s
-GitHub Releases and are linked from the companion-apps folder after publication.
-The Mac Apple Silicon app is a pilot; Windows remains pending a target build
-and validation. [Source ZIP](https://github.com/nchatlani1/arm-byte-sized-build-day/releases/download/workshop-v0.1.0/CrowPanel-Workshop-Source.zip) · [Mac Apple Silicon 0.3.2 pilot](https://github.com/nchatlani1/arm-byte-sized-build-day/releases/download/workshop-v0.1.0/CrowPanel-Companion-macOS-arm64-0.3.2.zip) · [Release notes](https://github.com/nchatlani1/arm-byte-sized-build-day/releases/tag/workshop-v0.1.0).
+GitHub Releases and are linked from the companion-apps folder.
+Mac Apple Silicon and Windows x64 apps are pilots; physical device and account
+acceptance remains pending. [Source ZIP](https://github.com/nchatlani1/arm-byte-sized-build-day/releases/download/workshop-v0.1.0/CrowPanel-Workshop-Source.zip) · [Mac Apple Silicon 0.3.2 pilot](https://github.com/nchatlani1/arm-byte-sized-build-day/releases/download/workshop-v0.1.0/CrowPanel-Companion-macOS-arm64-0.3.2.zip) · [Windows x64 0.3.2 pilot](https://github.com/nchatlani1/arm-byte-sized-build-day/releases/download/workshop-v0.1.0/CrowPanel-Companion-Windows-x64-0.3.2.zip) · [Release notes](https://github.com/nchatlani1/arm-byte-sized-build-day/releases/tag/workshop-v0.1.0).
 
 ## Slides and downloads
 

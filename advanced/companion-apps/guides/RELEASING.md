@@ -13,9 +13,11 @@ python3 advanced/companion-apps/release/package_workshop.py --source . --output 
 
 Build apps from advanced/companion-apps with tools/build_companion.py. Mac Apple
 Silicon is a local ad-hoc 0.3.2 pilot, not notarized. Use the root GitHub Actions
-Windows companion pilot workflow only after the repository exists. It uses this
+Windows companion pilot workflow to build on Windows. It uses this
 nested source folder and uploads an Actions pilot artifact, without publishing a
-Release. Windows links stay pending until a real target build and acceptance.
+Release. The 0.3.2 Windows x64 CI build and packaged smoke checks passed; its
+unsigned pilot is available, with physical platform acceptance still pending.
+Publish only actual target builds and label their acceptance limits.
 
 Attach the unified source ZIP and actual versioned Mac/Windows packages to one
 GitHub Release. Link the app assets from this folder's README, root README and
