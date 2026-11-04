@@ -9,6 +9,7 @@
 #include "frames.h"
 #include "panel_canvas.h"
 extern const uint8_t caBundle[] asm("_binary__generated_x509_crt_bundle_bin_start");
+extern const uint8_t caBundleEnd[] asm("_binary__generated_x509_crt_bundle_bin_end");
 namespace direct {
 static time_t retryAt = 0;
 inline uint32_t retryDelayMs() {
@@ -39,7 +40,7 @@ inline int request(const String& url, JsonDocument& json) {
     if (time(nullptr) < retryAt) return -2;
     if (!url.startsWith("https://")) return -3;
     WiFiClientSecure client;
-    client.setCACertBundle(caBundle);
+    client.setCACertBundle(caBundle, caBundleEnd - caBundle);
     HTTPClient http;
     http.setConnectTimeout(10000);
     http.setTimeout(12000);
