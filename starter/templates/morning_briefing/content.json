@@ -1,0 +1,11 @@
+{
+  "title": "Morning Briefing",
+  "location": "San Diego",
+  "temperature_f": 72,
+  "condition": "Sunny",
+  "symbol": "ARM",
+  "price": 148.2,
+  "quote_as_of": "SAMPLE PRICE",
+  "affirmation": "Build with courage.",
+  "source": "demo"
+}

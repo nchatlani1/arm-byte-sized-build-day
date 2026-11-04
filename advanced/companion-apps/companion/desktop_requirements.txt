@@ -1,0 +1,10 @@
+pyserial==3.5
+bleak==1.1.1
+keyring==25.7.0
+pyinstaller==6.22.3
+pyobjc-core==11.1; sys_platform == 'darwin'
+pyobjc-framework-Cocoa==11.1; sys_platform == 'darwin'
+pyobjc-framework-CoreBluetooth==11.1; sys_platform == 'darwin'
+pyobjc-framework-libdispatch==11.1; sys_platform == 'darwin'
+pywin32>=308,<400; sys_platform == 'win32'
+pywebview>=5,<7; sys_platform == 'win32'

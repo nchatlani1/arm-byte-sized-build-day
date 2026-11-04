@@ -1,0 +1,40 @@
+# Arm Byte Sized Build Day — CrowPanel Workshop
+
+After Casey’s browser starter, open **[starter/](starter/)** for Morning Briefing.
+The default screen shows **ARM stock and weather for ZIP 92128**. Start by editing
+your ticker and ZIP, then add home/office Wi-Fi for live data.
+
+| Folder | What it contains |
+| --- | --- |
+| [starter/](starter/) | One Morning Briefing template and its C++ firmware. Start here. |
+| [advanced/display/](advanced/display/) | Separate display firmware for calendar, Spotify and multiple screens. |
+| [advanced/companion-apps/](advanced/companion-apps/) | Mac/Windows companion app source, download status and build tools. |
+| [Slides and reference](docs/) | HTML presentation, setup guide and USB driver links. |
+
+Open `CrowPanel-Workshop.code-workspace` to see only the starter in VS Code.
+Alternatively use **File → Open Folder → starter**. Do not create a new PlatformIO
+project or open both display projects as one PlatformIO project.
+
+## Starter entry points
+
+- **[`starter/device.json`](starter/device.json)** — ticker, US ZIP, units, title and footer.
+- **[`starter/.env.example`](starter/.env.example)** — copy to `.env` for private home/office Wi-Fi.
+- **[`starter/firmware/src/main.cpp`](starter/firmware/src/main.cpp)** — commented Morning Briefing application, with Arduino `setup()` and `loop()`.
+
+[Starter instructions](starter/README.md) · [Advanced projects](advanced/README.md) ·
+[Companion downloads and setup](advanced/companion-apps/guides/COMPANION-SETUP.md#downloads)
+
+This is one repository. Versioned companion binaries belong in this repository’s
+GitHub Releases and are linked from the companion-apps folder after publication.
+The Mac Apple Silicon app is a pilot; Windows remains pending a target build
+and validation. [Source ZIP](https://github.com/nchatlani1/arm-byte-sized-build-day/releases/download/workshop-v0.1.0/CrowPanel-Workshop-Source.zip) · [Mac Apple Silicon 0.3.2 pilot](https://github.com/nchatlani1/arm-byte-sized-build-day/releases/download/workshop-v0.1.0/CrowPanel-Companion-macOS-arm64-0.3.2.zip) · [Release notes](https://github.com/nchatlani1/arm-byte-sized-build-day/releases/tag/workshop-v0.1.0).
+
+## Slides and downloads
+
+[View the slides](https://nchatlani1.github.io/arm-byte-sized-build-day/slides/CROWPANEL-INTRO.html) · [Reference page](https://nchatlani1.github.io/arm-byte-sized-build-day/) · [Companion setup](https://nchatlani1.github.io/arm-byte-sized-build-day/slides/CROWPANEL-COMPANION-SETUP.html).
+
+The presentation HTML is included under `docs/slides/`. GitHub Pages serves `main` → `/docs`. Companion binaries are GitHub Release assets; their source is under `advanced/companion-apps/`.
+
+## Licensing
+
+A project-level reuse license has not yet been selected. Retain all inherited notices and consult [source and dependency notices](advanced/companion-apps/guides/LICENSES.md) before redistribution. Bundled dependency license texts accompany the companion pilot.

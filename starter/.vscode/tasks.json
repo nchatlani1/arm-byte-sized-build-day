@@ -1,0 +1,113 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build offline starter",
+      "type": "process",
+      "command": "${userHome}/.platformio/penv/bin/platformio",
+      "windows": {
+        "command": "${userHome}\\.platformio\\penv\\Scripts\\platformio.exe"
+      },
+      "args": [
+        "run",
+        "-e",
+        "workshop_demo"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "Upload offline starter",
+      "type": "process",
+      "command": "${userHome}/.platformio/penv/bin/platformio",
+      "windows": {
+        "command": "${userHome}\\.platformio\\penv\\Scripts\\platformio.exe"
+      },
+      "args": [
+        "run",
+        "-e",
+        "workshop_demo",
+        "--target",
+        "upload",
+        "--upload-port",
+        "${input:serialPort}"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Build live stock and weather",
+      "type": "process",
+      "command": "${userHome}/.platformio/penv/bin/platformio",
+      "windows": {
+        "command": "${userHome}\\.platformio\\penv\\Scripts\\platformio.exe"
+      },
+      "args": [
+        "run",
+        "-e",
+        "workshop"
+      ],
+      "problemMatcher": [],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      }
+    },
+    {
+      "label": "Upload live stock and weather",
+      "type": "process",
+      "command": "${userHome}/.platformio/penv/bin/platformio",
+      "windows": {
+        "command": "${userHome}\\.platformio\\penv\\Scripts\\platformio.exe"
+      },
+      "args": [
+        "run",
+        "-e",
+        "workshop",
+        "--target",
+        "upload",
+        "--upload-port",
+        "${input:serialPort}"
+      ],
+      "problemMatcher": [],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      }
+    },
+    {
+      "label": "Serial monitor",
+      "type": "process",
+      "command": "${userHome}/.platformio/penv/bin/platformio",
+      "windows": {
+        "command": "${userHome}\\.platformio\\penv\\Scripts\\platformio.exe"
+      },
+      "args": [
+        "device",
+        "monitor",
+        "--baud",
+        "115200",
+        "--port",
+        "${input:serialPort}"
+      ],
+      "problemMatcher": [],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      }
+    }
+  ],
+  "inputs": [
+    {
+      "id": "serialPort",
+      "type": "promptString",
+      "description": "Port from PlatformIO Devices: COM number on Windows, /dev/cu... on macOS",
+      "default": ""
+    }
+  ]
+}

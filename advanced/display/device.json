@@ -1,0 +1,13 @@
+{
+  "stock_symbol": "ARM",
+  "weather": {
+    "zip_code": "92128",
+    "temperature_unit": "F"
+  },
+  "title": "Morning Briefing",
+  "footer": "Team Arm",
+  "extensions": {
+    "calendar": true,
+    "spotify": true
+  }
+}

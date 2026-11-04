@@ -1,0 +1,15 @@
+**/.pio/
+**/.generated/
+**/.local/
+**/.venv*/
+**/__pycache__/
+**/build/
+**/dist/
+*.pyc
+.DS_Store
+**/.env
+**/.env.*
+!**/.env.example
+**/firmware/include/secrets.h
+**/.vscode/c_cpp_properties.json
+**/.vscode/launch.json

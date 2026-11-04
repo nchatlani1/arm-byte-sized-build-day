@@ -1,0 +1,63 @@
+name: Windows companion pilot
+
+# Maintainer-run build only; this does not publish a GitHub Release.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  windows-x64:
+    runs-on: windows-2022
+    timeout-minutes: 30
+    defaults:
+      run:
+        shell: pwsh
+        working-directory: advanced/companion-apps
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+          architecture: x64
+      - name: Install declared desktop dependencies
+        run: |
+          python -m pip install -r companion/desktop_requirements.txt
+          if ($LASTEXITCODE -ne 0) { throw 'Dependency installation failed' }
+          python -m pip check
+          if ($LASTEXITCODE -ne 0) { throw 'Dependency consistency check failed' }
+      - name: Run source checks
+        run: |
+          python -B -m unittest discover -s tests -v
+          if ($LASTEXITCODE -ne 0) { throw 'Source checks failed' }
+          python -c "import struct, sys; assert sys.platform == 'win32' and struct.calcsize('P') == 8; import win32gui, pythoncom, webview, bleak, keyring"
+          if ($LASTEXITCODE -ne 0) { throw 'Windows runtime imports failed' }
+      - name: Build Windows portable app
+        run: |
+          python tools/build_companion.py
+          if ($LASTEXITCODE -ne 0) { throw 'Windows packaging failed' }
+      - name: Smoke the extracted app with an isolated offline profile
+        run: |
+          python tools/smoke_windows_companion.py --archive dist/companion/CrowPanel-Companion-Windows.zip --report dist/companion/windows-smoke.json
+          if ($LASTEXITCODE -ne 0) { throw 'Packaged Windows smoke failed' }
+      - name: Stage versioned pilot and provenance
+        run: |
+          $version = (Get-Content release/release.json -Raw | ConvertFrom-Json).companion_version
+          $pilot = 'dist/companion/windows-pilot'
+          New-Item -ItemType Directory -Force $pilot | Out-Null
+          $asset = "CrowPanel-Companion-Windows-x64-$version.zip"
+          Copy-Item dist/companion/CrowPanel-Companion-Windows.zip "$pilot/$asset"
+          Copy-Item dist/companion/windows-smoke.json "$pilot/windows-smoke.json"
+          (Get-FileHash "$pilot/$asset" -Algorithm SHA256).Hash.ToLower() + "  $asset" | Set-Content "$pilot/SHA256SUMS" -Encoding ascii
+          python -m pip freeze | Set-Content "$pilot/build-requirements.txt" -Encoding utf8
+          if ($LASTEXITCODE -ne 0) { throw 'Dependency inventory failed' }
+          @{version=$version; source_commit=$env:GITHUB_SHA; runner='windows-2022'; architecture='x64'; acceptance='CI smoke only; physical Windows pilot pending'} | ConvertTo-Json | Set-Content "$pilot/build.json" -Encoding utf8
+      - uses: actions/upload-artifact@v7
+        with:
+          name: CrowPanel-Companion-Windows-x64-pilot
+          path: advanced/companion-apps/dist/companion/windows-pilot/
+          if-no-files-found: error
+          retention-days: 14

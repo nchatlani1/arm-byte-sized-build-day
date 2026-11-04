@@ -1,0 +1,14 @@
+.pio/
+.generated/
+.local/
+.venv/
+__pycache__/
+*.pyc
+firmware/include/secrets.h
+.DS_Store
+.env
+.env.*
+!.env.example
+# PlatformIO regenerates these with each participant's local paths.
+.vscode/c_cpp_properties.json
+.vscode/launch.json

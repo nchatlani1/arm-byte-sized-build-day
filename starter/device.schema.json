@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Morning Briefing settings \u2014 edit ticker and ZIP, then build/upload",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "stock_symbol",
+    "weather",
+    "title",
+    "footer"
+  ],
+  "properties": {
+    "stock_symbol": {
+      "type": "string",
+      "pattern": "^[A-Z0-9][A-Z0-9.\\-]{0,8}$",
+      "description": "A USD ticker such as ARM or MSFT. The board fetches its quote."
+    },
+    "weather": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "zip_code",
+        "temperature_unit"
+      ],
+      "properties": {
+        "zip_code": {
+          "type": "string",
+          "pattern": "^[0-9]{5}$",
+          "description": "Five-digit US ZIP, preserving leading zeros. Default 92128 is bundled for offline builds; other ZIPs need one build-time lookup."
+        },
+        "temperature_unit": {
+          "enum": [
+            "C",
+            "F"
+          ],
+          "description": "Display weather in Fahrenheit (F) or Celsius (C)."
+        }
+      }
+    },
+    "title": {
+      "type": "string",
+      "maxLength": 29,
+      "description": "Heading shown on Morning Briefing."
+    },
+    "footer": {
+      "type": "string",
+      "maxLength": 38,
+      "description": "Your footer; an enabled calendar extension can show the next meeting here."
+    }
+  }
+}

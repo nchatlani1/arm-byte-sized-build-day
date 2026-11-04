@@ -1,0 +1,26 @@
+{
+  "folders": [
+    {
+      "path": "."
+    }
+  ],
+  "settings": {
+    "files.exclude": {
+      "**/.pio": true,
+      "**/.generated": true
+    },
+    "json.schemas": [
+      {
+        "fileMatch": [
+          "/device.json"
+        ],
+        "url": "./device.schema.json"
+      }
+    ]
+  },
+  "extensions": {
+    "recommendations": [
+      "platformio.platformio-ide"
+    ]
+  }
+}

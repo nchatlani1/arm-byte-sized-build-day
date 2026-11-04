@@ -1,0 +1,10 @@
+.local/
+.generated/
+.venv-companion/
+__pycache__/
+*.pyc
+build/
+dist/
+*.spec
+.DS_Store
+.env
